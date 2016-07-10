@@ -1,10 +1,13 @@
 #!/bin/bash -
+# vim: set expandtab ts=4 sw=4:
 
 set -o nounset                              # Treat unset variables as an error
 
 main() {
+    # Read config
+    . chroot.config
     # Set machine name
-    echo manhattan > /etc/hostname
+    echo "$GUEST_HOSTNAME" > /etc/hostname
     # Time zone
     ln -s /usr/share/zoneinfo/Europe/Tallinn /etc/localtime
     # Add locale
@@ -13,21 +16,21 @@ main() {
     echo LANG=en_US.UTF-8 > /etc/locale.conf
     locale-gen
     mkinitcpio -p linux
-    passwd
-    yes | pacman -S syslinux openssh sudo open-vm-tools xf86-video-vmware xf86-input-vmmouse mesa gtkmm zsh
-    sed 's:/dev/sda3:/dev/sda1:g' /boot/syslinux/syslinux.cfg
+    echo "$ROOT_PASSWORD" | passwd --stdin
+    pacman -S --noconfirm syslinux openssh sudo open-vm-tools xf86-video-vmware xf86-input-vmmouse mesa gtkmm zsh
+    sed -i -e 's:/dev/sda3:/dev/sda1:g' /boot/syslinux/syslinux.cfg
     syslinux-install_update -i -a -m
     systemctl enable sshd
     systemctl enable vmtoolsd
     systemctl enable vmware-vmblock-fuse
-    sed -i -e 's:#includedir /etc/sudoers.d:includedir /etc/sudoers.d' /etc/sudoers
+    sed -i -e 's:#includedir /etc/sudoers.d:includedir /etc/sudoers.d:' /etc/sudoers
     visudo -c -q -f - <<SuDoersTest
 %wheel ALL=(ALL) NOPASSWD: ALL
 SuDoersTest
     # And change nopasswd after install
     echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
-    useradd -m -G wheel ansible
-    passwd ansible
+    useradd -m -G wheel "$GUEST_USER"
+    echo "$GUEST_PASSWORD" | passwd --stdin "$GUEST_USER"
 }
 
 main

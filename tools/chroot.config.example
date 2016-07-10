@@ -1,0 +1,4 @@
+GUEST_HOSTNAME="manhattan"
+ROOT_PASSWORD="iknowwhatyoudidlastsummer"
+GUEST_USER="ansible"
+GUEST_PASSWORD="ohsocomplex"
