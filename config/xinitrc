@@ -1,0 +1,2 @@
+exec /usr/bin/vmware-user-suid-wrapper &
+exec i3

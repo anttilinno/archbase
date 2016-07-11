@@ -5,7 +5,7 @@ set -o nounset                              # Treat unset variables as an error
 
 main() {
     # Read config
-    . chroot.config
+    . /chroot.config
     # Set machine name
     echo "$GUEST_HOSTNAME" > /etc/hostname
     # Time zone
@@ -16,7 +16,7 @@ main() {
     echo LANG=en_US.UTF-8 > /etc/locale.conf
     locale-gen
     mkinitcpio -p linux
-    echo "$ROOT_PASSWORD" | passwd --stdin
+    echo "$ROOT_PASSWORD" | chpasswd
     pacman -S --noconfirm syslinux openssh sudo open-vm-tools xf86-video-vmware xf86-input-vmmouse mesa gtkmm zsh
     sed -i -e 's:/dev/sda3:/dev/sda1:g' /boot/syslinux/syslinux.cfg
     syslinux-install_update -i -a -m
@@ -30,7 +30,7 @@ SuDoersTest
     # And change nopasswd after install
     echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
     useradd -m -G wheel "$GUEST_USER"
-    echo "$GUEST_PASSWORD" | passwd --stdin "$GUEST_USER"
+    echo "$GUEST_PASSWORD" | chpasswd
 }
 
 main
