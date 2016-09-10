@@ -32,10 +32,10 @@ SuDoersTest
     useradd -m -G wheel "$GUEST_USER"
     echo "$GUEST_USER:$GUEST_PASSWORD" | chpasswd
     useradd -m -G wheel -s /usr/bin/zsh antti
-    cd /etc/pacman.d
-    cp mirrorlist mirrorlist.backup
-    sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
-    rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+    #cd /etc/pacman.d
+    #cp mirrorlist mirrorlist.backup
+    #sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
+    #rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
     systemctl enable dhcpcd@ens33.service
     su - antti
     git clone https://github.com/anttilinno/archbase
