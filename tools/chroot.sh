@@ -45,6 +45,8 @@ Server = http://repo.archlinux.fr/$arch
 EOT
     pacman -Sy
     pacman -S --noconfirm yaourt
+    su - antti
+    git clone https://github.com/anttilinno/archbase
 }
 
 main
