@@ -40,6 +40,7 @@ SuDoersTest
     rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
     systemctl enable dhcpcd@ens33.service
     git clone https://github.com/anttilinno/archbase /home/antti/archbase
+    chown -R antti:antti /home/antti/archbase
     cat <<'EOT' >> /etc/pacman.conf
 
 [archlinuxfr]
