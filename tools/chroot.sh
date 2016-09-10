@@ -17,7 +17,7 @@ main() {
     locale-gen
     mkinitcpio -p linux
     echo "$ROOT_PASSWORD" | chpasswd
-    pacman -S --noconfirm syslinux openssh sudo open-vm-tools xf86-video-vmware xf86-input-vmmouse mesa gtkmm zsh
+    pacman -S --noconfirm syslinux openssh sudo open-vm-tools xf86-video-vmware xf86-input-vmmouse mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel libreadline-dev
     sed -i -e 's:/dev/sda3:/dev/sda1:g' /boot/syslinux/syslinux.cfg
     syslinux-install_update -i -a -m
     systemctl enable sshd
@@ -31,6 +31,19 @@ SuDoersTest
     echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
     useradd -m -G wheel "$GUEST_USER"
     echo "$GUEST_PASSWORD" | chpasswd
+    useradd -m -G wheel -s /usr./bin/zsh antti
+    cd /etc/pacman.d
+    cp mirrorlist mirrorlist.backup
+    sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
+    rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+    systemctl enable dhcpcd@ens33.service
+    cat <<EOT >> /etc/pacman.conf
+
+[archlinuxfr]
+SigLevel = Never
+Server = http://repo.archlinux.fr/$arch
+EOT
+    pacman -S --noconfirm yaourt
 }
 
 main
