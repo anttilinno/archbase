@@ -37,6 +37,9 @@ SuDoersTest
     sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
     rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
     systemctl enable dhcpcd@ens33.service
+    su - antti
+    git clone https://github.com/anttilinno/archbase
+    exit
     cat <<'EOT' >> /etc/pacman.conf
 
 [archlinuxfr]
@@ -45,8 +48,6 @@ Server = http://repo.archlinux.fr/$arch
 EOT
     pacman -Sy
     pacman -S --noconfirm yaourt
-    su - antti
-    git clone https://github.com/anttilinno/archbase
     exit
 }
 
