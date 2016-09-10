@@ -33,10 +33,11 @@ SuDoersTest
     useradd -m -G wheel "$GUEST_USER"
     echo "$GUEST_USER:$GUEST_PASSWORD" | chpasswd
     useradd -m -G wheel -s /usr/bin/zsh antti
-    #cd /etc/pacman.d
-    #cp mirrorlist mirrorlist.backup
-    #sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
-    #rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+    echo "$OWNER_USER:$OWNER_PASSWORD" | chpasswd
+    cd /etc/pacman.d
+    cp mirrorlist mirrorlist.backup
+    sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
+    rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
     systemctl enable dhcpcd@ens33.service
     git clone https://github.com/anttilinno/archbase /home/antti/archbase
     cat <<'EOT' >> /etc/pacman.conf
