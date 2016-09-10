@@ -31,7 +31,7 @@ SuDoersTest
     echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
     useradd -m -G wheel "$GUEST_USER"
     echo "$GUEST_USER:$GUEST_PASSWORD" | chpasswd
-    useradd -m -G wheel -s /usr./bin/zsh antti
+    useradd -m -G wheel -s /usr/bin/zsh antti
     cd /etc/pacman.d
     cp mirrorlist mirrorlist.backup
     sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
