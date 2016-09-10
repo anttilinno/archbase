@@ -37,6 +37,7 @@ SuDoersTest
     #sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
     #rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
     systemctl enable dhcpcd@ens33.service
+    touch /home/antti/.zshrc
     su - antti
     git clone https://github.com/anttilinno/archbase
     exit
