@@ -17,6 +17,7 @@ main() {
     locale-gen
     mkinitcpio -p linux
     echo "root:$ROOT_PASSWORD" | chpasswd
+    pacman -Sy
     pacman -S --noconfirm grub openssh sudo open-vm-tools xf86-video-vmware xf86-input-vmmouse mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel
     grub-install --target=i386-pc /dev/sda
     grub-mkconfig -o /boot/grub/grub.cfg
@@ -37,10 +38,7 @@ SuDoersTest
     #sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
     #rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
     systemctl enable dhcpcd@ens33.service
-    touch /home/antti/.zshrc
-    su - antti
-    git clone https://github.com/anttilinno/archbase
-    exit
+    git clone https://github.com/anttilinno/archbase /home/antti/archbase
     cat <<'EOT' >> /etc/pacman.conf
 
 [archlinuxfr]
