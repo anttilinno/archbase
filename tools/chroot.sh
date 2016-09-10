@@ -17,9 +17,9 @@ main() {
     locale-gen
     mkinitcpio -p linux
     echo "$ROOT_PASSWORD" | chpasswd
-    pacman -S --noconfirm syslinux openssh sudo open-vm-tools xf86-video-vmware xf86-input-vmmouse mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel
-    sed -i -e 's:/dev/sda3:/dev/sda1:g' /boot/syslinux/syslinux.cfg
-    syslinux-install_update -i -a -m
+    pacman -S --noconfirm grub openssh sudo open-vm-tools xf86-video-vmware xf86-input-vmmouse mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel
+    grub-install --target=i386-pc /dev/sda
+    grub-mkconfig -o /boot/grub/grub.cfg
     systemctl enable sshd
     systemctl enable vmtoolsd
     systemctl enable vmware-vmblock-fuse
