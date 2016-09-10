@@ -49,6 +49,8 @@ Server = http://repo.archlinux.fr/$arch
 EOT
     pacman -Sy
     pacman -S --noconfirm yaourt
+    cd /home/antti/archbase/tools
+    ./create_links.sh
     exit
 }
 
