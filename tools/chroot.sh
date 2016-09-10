@@ -16,7 +16,7 @@ main() {
     echo LANG=en_US.UTF-8 > /etc/locale.conf
     locale-gen
     mkinitcpio -p linux
-    echo "$ROOT_PASSWORD" | chpasswd
+    echo "root:$ROOT_PASSWORD" | chpasswd
     pacman -S --noconfirm grub openssh sudo open-vm-tools xf86-video-vmware xf86-input-vmmouse mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel
     grub-install --target=i386-pc /dev/sda
     grub-mkconfig -o /boot/grub/grub.cfg
@@ -30,7 +30,7 @@ SuDoersTest
     # And change nopasswd after install
     echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
     useradd -m -G wheel "$GUEST_USER"
-    echo "$GUEST_PASSWORD" | chpasswd
+    echo "$GUEST_USER:$GUEST_PASSWORD" | chpasswd
     useradd -m -G wheel -s /usr./bin/zsh antti
     cd /etc/pacman.d
     cp mirrorlist mirrorlist.backup
@@ -47,6 +47,7 @@ EOT
     pacman -S --noconfirm yaourt
     su - antti
     git clone https://github.com/anttilinno/archbase
+    exit
 }
 
 main

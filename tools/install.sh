@@ -25,6 +25,7 @@ DiskLayOut
     genfstab -p /mnt >> /mnt/etc/fstab
     cp chroot.config /mnt
     arch-chroot /mnt /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/anttilinno/archbase/master/tools/chroot.sh)"
+    reboot
 }
 
 main
