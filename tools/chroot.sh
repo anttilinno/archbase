@@ -17,7 +17,7 @@ main() {
     locale-gen
     mkinitcpio -p linux
     echo "$ROOT_PASSWORD" | chpasswd
-    pacman -S --noconfirm syslinux openssh sudo open-vm-tools xf86-video-vmware xf86-input-vmmouse mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel libreadline-dev
+    pacman -S --noconfirm syslinux openssh sudo open-vm-tools xf86-video-vmware xf86-input-vmmouse mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel
     sed -i -e 's:/dev/sda3:/dev/sda1:g' /boot/syslinux/syslinux.cfg
     syslinux-install_update -i -a -m
     systemctl enable sshd
@@ -37,12 +37,13 @@ SuDoersTest
     sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
     rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
     systemctl enable dhcpcd@ens33.service
-    cat <<EOT >> /etc/pacman.conf
+    cat <<'EOT' >> /etc/pacman.conf
 
 [archlinuxfr]
 SigLevel = Never
 Server = http://repo.archlinux.fr/$arch
 EOT
+    pacman -Sy
     pacman -S --noconfirm yaourt
 }
 
