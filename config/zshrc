@@ -5,7 +5,7 @@
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+ZSH_THEME="jreese"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -101,9 +101,6 @@ alias repo1="cd $HOME/Repo/Bundle"
 alias repo2="cd $HOME/Repo/Forms/API"
 alias tag="cd $HOME/$repo;ctags -f tags --recurse --totals --languages=Perl --langmap=Perl:+.t"
 alias ff="pg_dump -Fc -s -U postgres $pg_db | pg_restore -l | grep "
-
-#alias grep="/usr/bin/grep $GREP_OPTIONS"
-#unset GREP_OPTIONS
 
 set_db() { export pg_db="$1"; export pg_connect="dbi:Pg:dbname=$1" }
 bm() { psql -U postgres $pg_db }

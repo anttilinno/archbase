@@ -1,2 +1,3 @@
 exec /usr/bin/vmware-user-suid-wrapper &
+exec terminator &
 exec i3

@@ -24,7 +24,6 @@ main() {
     systemctl enable sshd
     systemctl enable vmtoolsd
     systemctl enable vmware-vmblock-fuse
-    #sed -i -e 's:#includedir /etc/sudoers.d:includedir /etc/sudoers.d:' /etc/sudoers
     visudo -c -q -f - <<SuDoersTest
 %wheel ALL=(ALL) NOPASSWD: ALL
 SuDoersTest
@@ -34,10 +33,10 @@ SuDoersTest
     echo "$GUEST_USER:$GUEST_PASSWORD" | chpasswd
     useradd -m -G wheel -s /usr/bin/zsh antti
     echo "$OWNER_USER:$OWNER_PASSWORD" | chpasswd
-    #cd /etc/pacman.d
-    #cp mirrorlist mirrorlist.backup
-    #sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
-    #rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+    cd /etc/pacman.d
+    cp mirrorlist mirrorlist.backup
+    sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
+    rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
     systemctl enable dhcpcd@ens33.service
     cat <<'EOT' >> /etc/pacman.conf
 
@@ -47,9 +46,9 @@ Server = http://repo.archlinux.fr/$arch
 EOT
     pacman -Sy
     pacman -S --noconfirm yaourt
-    git clone https://github.com/anttilinno/archbase /home/antti/archbase
+    git clone https://github.com/anttilinno/archbase /home/antti/.archbase
     git clone git://github.com/robbyrussell/oh-my-zsh.git /home/antti/.oh-my-zsh
-    cd /home/antti/archbase/tools
+    cd /home/antti/.archbase/tools
     ./create_links.sh
     chown -R antti:antti /home/antti
     exit
