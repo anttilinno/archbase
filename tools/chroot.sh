@@ -47,12 +47,11 @@ Server = http://repo.archlinux.fr/$arch
 EOT
     pacman -Sy
     pacman -S --noconfirm yaourt
-    su antti
-    cd /home/antti
-    git clone https://github.com/anttilinno/archbase ~/archbase
-    git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+    git clone https://github.com/anttilinno/archbase /home/antti/archbase
+    git clone git://github.com/robbyrussell/oh-my-zsh.git /home/antti/.oh-my-zsh
     cd /home/antti/archbase/tools
     ./create_links.sh
+    chown -R antti:antti /home/antti
     exit
 }
 
