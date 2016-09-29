@@ -13,3 +13,7 @@ ln -s /home/antti/.archbase/config/zshrc /home/antti/.zshrc
 
 git clone https://github.com/anttilinno/dotvim /home/antti/.config/nvim
 git clone https://github.com/VundleVim/Vundle.vim.git /home/antti/.config/nvim/bundle/Vundle.vim
+
+cd /home/antti
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+

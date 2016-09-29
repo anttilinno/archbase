@@ -18,7 +18,7 @@ main() {
     mkinitcpio -p linux
     echo "root:$ROOT_PASSWORD" | chpasswd
     pacman -Sy
-    pacman -S --noconfirm grub openssh sudo open-vm-tools xf86-video-vmware xf86-input-vmmouse mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel
+    pacman -S --noconfirm grub openssh sudo open-vm-tools xf86-video-vmware xf86-input-vmmouse mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel gmrun
     grub-install --target=i386-pc /dev/sda
     grub-mkconfig -o /boot/grub/grub.cfg
     systemctl enable sshd
