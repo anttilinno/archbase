@@ -18,12 +18,21 @@ main() {
     mkinitcpio -p linux
     echo "root:$ROOT_PASSWORD" | chpasswd
     pacman -Sy
-    pacman -S --noconfirm grub openssh sudo open-vm-tools xf86-video-vmware xf86-input-vmmouse mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel gmrun
+    pacman -S --noconfirm grub openssh sudo mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel gmrun
+    if [ "$VMTYPE" = "vmware" ]; then
+        pacman -S --noconfirm open-vm-tools xf86-video-vmware xf86-input-vmmouse
+    else
+        pacman -S --noconfirm virtualbox-guest-utils virtualbox-guest-modules-arch
+    fi
     grub-install --target=i386-pc /dev/sda
     grub-mkconfig -o /boot/grub/grub.cfg
     systemctl enable sshd
-    systemctl enable vmtoolsd
-    systemctl enable vmware-vmblock-fuse
+    if [ "$VMTYPE" = "vmware" ]; then
+        systemctl enable vmtoolsd
+        systemctl enable vmware-vmblock-fuse
+    else
+        systemctl enable vboxservice.service
+    fi
     visudo -c -q -f - <<SuDoersTest
 %wheel ALL=(ALL) NOPASSWD: ALL
 SuDoersTest
