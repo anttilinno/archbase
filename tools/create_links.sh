@@ -17,5 +17,5 @@ git clone https://github.com/VundleVim/Vundle.vim.git /home/antti/.config/nvim/b
 cd /home/antti
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-ln -s /home/antti/.config/nvim ~/.gvimrc
+ln -s /home/antti/.config/nvim/gvimrc ~/.gvimrc
 ln -s /home/antti/.config/nvim/init.vim ~/.vimrc
