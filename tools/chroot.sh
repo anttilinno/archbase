@@ -18,7 +18,7 @@ main() {
     mkinitcpio -p linux
     echo "root:$ROOT_PASSWORD" | chpasswd
     pacman -Sy
-    pacman -S --noconfirm grub openssh sudo mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel gmrun
+    pacman -S --noconfirm grub openssh sudo mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel gmrun diff-so-fancy
     if [ "$VMTYPE" = "vmware" ]; then
         pacman -S --noconfirm open-vm-tools xf86-video-vmware xf86-input-vmmouse
     else
