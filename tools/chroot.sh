@@ -9,6 +9,7 @@ main() {
     # Set machine name
     echo "$GUEST_HOSTNAME" > /etc/hostname
     # Time zone
+    rm /etc/localtime
     ln -s /usr/share/zoneinfo/Europe/Tallinn /etc/localtime
     # Add locale
     sed -i -e 's/# *en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
@@ -18,12 +19,14 @@ main() {
     mkinitcpio -p linux
     echo "root:$ROOT_PASSWORD" | chpasswd
     pacman -Sy
-    pacman -S --noconfirm grub openssh sudo mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel gmrun diff-so-fancy
+    pacman -S --noconfirm grub openssh sudo mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel gmrun gvim diff-so-fancy
+
     if [ "$VMTYPE" = "vmware" ]; then
         pacman -S --noconfirm open-vm-tools xf86-video-vmware xf86-input-vmmouse
     else
         pacman -S --noconfirm virtualbox-guest-utils virtualbox-guest-modules-arch
     fi
+
     grub-install --target=i386-pc /dev/sda
     grub-mkconfig -o /boot/grub/grub.cfg
     systemctl enable sshd
@@ -46,7 +49,13 @@ SuDoersTest
     cp mirrorlist mirrorlist.backup
     sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
     rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
-    systemctl enable dhcpcd@ens33.service
+
+    if [ "$VMTYPE" = "vmware" ]; then
+        systemctl enable dhcpcd@ens33.service
+    else
+        systemctl enable dhcpcd@enp0s3.service
+    fi
+
     cat <<'EOT' >> /etc/pacman.conf
 
 [archlinuxfr]
@@ -60,6 +69,13 @@ EOT
     cd /home/antti/.archbase/tools
     ./create_links.sh
     chown -R antti:antti /home/antti
+
+    if [ "$VMTYPE" = "vmware" ]; then
+        sed -i '1s/^#//' /home/antti/.xinitrc
+    else
+        sed -i '2s/^#//' /home/antti/.xinitrc
+    fi
+
     exit
 }
 
