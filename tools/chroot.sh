@@ -40,8 +40,6 @@ main() {
 SuDoersTest
     # And change nopasswd after install
     echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
-    useradd -m -G wheel "$GUEST_USER"
-    echo "$GUEST_USER:$GUEST_PASSWORD" | chpasswd
     useradd -m -G wheel -s /usr/bin/zsh "$OWNER_USER"
     echo "$OWNER_USER:$OWNER_PASSWORD" | chpasswd
     cd /etc/pacman.d
