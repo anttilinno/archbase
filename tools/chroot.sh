@@ -29,7 +29,6 @@ main() {
 
     grub-install --target=i386-pc /dev/sda
     grub-mkconfig -o /boot/grub/grub.cfg
-    systemctl enable sshd
     if [ "$VMTYPE" = "vmware" ]; then
         systemctl enable vmtoolsd
         systemctl enable vmware-vmblock-fuse
