@@ -6,14 +6,7 @@ set -o nounset
 main() {
 
     # Create partition
-    sfdisk /dev/sda <<DiskLayOut
-label: dos
-label-id: 0x3eb3bc30
-device: /dev/sda
-unit: sectors
-
-/dev/sda1 : start=        2048, size=    16775168, type=83, bootable
-DiskLayOut
+    echo ';' | sfdisk /dev/sda
 
     # Create fs
     mkfs.ext4 /dev/sda1

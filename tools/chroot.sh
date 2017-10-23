@@ -19,7 +19,7 @@ main() {
     mkinitcpio -p linux
     echo "root:$ROOT_PASSWORD" | chpasswd
     pacman -Sy
-    pacman -S --noconfirm grub openssh sudo mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel gmrun gvim diff-so-fancy
+    pacman -S --noconfirm grub openssh sudo mesa zsh xorg-xinit i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel gmrun diff-so-fancy
 
     if [ "$VMTYPE" = "vmware" ]; then
         pacman -S --noconfirm open-vm-tools xf86-video-vmware xf86-input-vmmouse
@@ -43,7 +43,7 @@ SuDoersTest
     echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
     useradd -m -G wheel "$GUEST_USER"
     echo "$GUEST_USER:$GUEST_PASSWORD" | chpasswd
-    useradd -m -G wheel -s /usr/bin/zsh antti
+    useradd -m -G wheel -s /usr/bin/zsh "$OWNER_USER"
     echo "$OWNER_USER:$OWNER_PASSWORD" | chpasswd
     cd /etc/pacman.d
     cp mirrorlist mirrorlist.backup
@@ -64,16 +64,17 @@ Server = http://repo.archlinux.fr/$arch
 EOT
     pacman -Sy
     pacman -S --noconfirm yaourt
-    git clone https://github.com/anttilinno/archbase /home/antti/.archbase
-    git clone git://github.com/robbyrussell/oh-my-zsh.git /home/antti/.oh-my-zsh
-    cd /home/antti/.archbase/tools
-    ./create_links.sh
-    chown -R antti:antti /home/antti
+    yaourt -S --noconfirm tilix-bin
+    git clone https://github.com/anttilinno/archbase /home/${OWNER_USER}/.archbase
+    git clone git://github.com/robbyrussell/oh-my-zsh.git /home/${OWNER_USER}/.oh-my-zsh
+    cd /home/${OWNER_USER}/.archbase/tools
+    ./create_links.sh "/home/${OWNER_USER}"
+    chown -R ${OWNER_USER}:${OWNER_USER} /home/${OWNER_USER}
 
     if [ "$VMTYPE" = "vmware" ]; then
-        sed -i '1s/^#//' /home/antti/.xinitrc
+        sed -i '1s/^#//' /home/${OWNER_USER}/.xinitrc
     else
-        sed -i '2s/^#//' /home/antti/.xinitrc
+        sed -i '2s/^#//' /home/${OWNER_USER}/.xinitrc
     fi
 
     exit

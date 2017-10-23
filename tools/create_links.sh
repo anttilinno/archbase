@@ -2,23 +2,18 @@
 
 set -o nounset                              # Treat unset variables as an error
 
-mkdir -p /home/antti/.local/bin
-mkdir /home/antti/.config
+BASE_DIR="$1"
 
-ln -s /home/antti/.archbase/config/i3 /home/antti/.config/i3
-ln -s /home/antti/.archbase/config/localbin /home/antti/.local/bin
-ln -s /home/antti/.archbase/config/terminator /home/antti/.config/terminator
-ln -s /home/antti/.archbase/config/xinitrc /home/antti/.xinitrc
-ln -s /home/antti/.archbase/config/zshrc /home/antti/.zshrc
+mkdir -p ${BASE_DIR}/.local/bin
+mkdir ${BASE_DIR}/.config
 
-git clone https://github.com/anttilinno/dotvim /home/antti/.config/nvim
-git clone https://github.com/VundleVim/Vundle.vim.git /home/antti/.config/nvim/bundle/Vundle.vim
+ln -s ${BASE_DIR}/.archbase/config/i3 ${BASE_DIR}/.config/i3
+ln -s ${BASE_DIR}/.archbase/config/localbin ${BASE_DIR}/.local/bin
+ln -s ${BASE_DIR}/.archbase/config/xinitrc ${BASE_DIR}/.xinitrc
+ln -s ${BASE_DIR}/.archbase/config/zshrc ${BASE_DIR}/.zshrc
 
-ln -s /home/antti/.config/nvim/gvimrc /home/antti/.gvimrc
-ln -s /home/antti/.config/nvim/init.vim /home/antti/.vimrc
+git clone https://github.com/anttilinno/dotvim ${BASE_DIR}/.config/nvim
+git clone https://github.com/VundleVim/Vundle.vim.git ${BASE_DIR}/.config/nvim/bundle/Vundle.vim
 
 ln -s /usr/bin/nvim /usr/local/bin/vim
-
-cd /home/antti
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
