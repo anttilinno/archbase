@@ -1,4 +1,4 @@
 #exec /usr/bin/vmware-user-suid-wrapper &
 #exec VBoxClient-all &
-exec terminator &
+exec tilix &
 exec i3

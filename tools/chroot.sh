@@ -53,6 +53,13 @@ SuDoersTest
         systemctl enable dhcpcd@enp0s3.service
     fi
 
+    mkdir -p /etc/systemd/system/getty@tty1.service.d
+    cat <<EOT >> /etc/systemd/system/getty@tty1.service.d/override.conf
+[Service]
+ExecStart=
+ExecStart=-/usr/bin/agetty --autologin ${OWNER_USER} --noclear %I \$TERM
+EOT
+
     cat <<'EOT' >> /etc/pacman.conf
 
 [archlinuxfr]

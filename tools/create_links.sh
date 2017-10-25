@@ -11,6 +11,7 @@ ln -s ${BASE_DIR}/.archbase/config/i3 ${BASE_DIR}/.config/i3
 ln -s ${BASE_DIR}/.archbase/config/localbin ${BASE_DIR}/.local/bin
 ln -s ${BASE_DIR}/.archbase/config/xinitrc ${BASE_DIR}/.xinitrc
 ln -s ${BASE_DIR}/.archbase/config/zshrc ${BASE_DIR}/.zshrc
+ln -s ${BASE_DIR}/.archbase/config/zprofile ${BASE_DIR}/.zprofile
 
 git clone https://github.com/anttilinno/dotvim ${BASE_DIR}/.config/nvim
 git clone https://github.com/VundleVim/Vundle.vim.git ${BASE_DIR}/.config/nvim/bundle/Vundle.vim
