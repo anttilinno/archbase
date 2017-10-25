@@ -68,7 +68,7 @@ Server = http://repo.archlinux.fr/$arch
 EOT
     pacman -Sy
     pacman -S --noconfirm yaourt
-    yaourt -S --noconfirm tilix-bin
+    su - "${OWNER_USER} -c "yaourt -S --noconfirm tilix-bin"
     git clone https://github.com/anttilinno/archbase /home/${OWNER_USER}/.archbase
     git clone git://github.com/robbyrussell/oh-my-zsh.git /home/${OWNER_USER}/.oh-my-zsh
     cd /home/${OWNER_USER}/.archbase/tools
