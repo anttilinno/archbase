@@ -19,7 +19,7 @@ main() {
     mkinitcpio -p linux
     echo "root:$ROOT_PASSWORD" | chpasswd
     pacman -Sy
-    pacman -S --noconfirm grub openssh sudo mesa zsh xorg-xinit i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel gmrun diff-so-fancy
+    pacman -S --noconfirm grub openssh sudo mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel gmrun diff-so-fancy
 
     if [ "$VMTYPE" = "vmware" ]; then
         pacman -S --noconfirm open-vm-tools xf86-video-vmware xf86-input-vmmouse
@@ -68,7 +68,6 @@ Server = http://repo.archlinux.fr/$arch
 EOT
     pacman -Sy
     pacman -S --noconfirm yaourt
-    su - "${OWNER_USER} -c "yaourt -S --noconfirm tilix-bin"
     git clone https://github.com/anttilinno/archbase /home/${OWNER_USER}/.archbase
     git clone git://github.com/robbyrussell/oh-my-zsh.git /home/${OWNER_USER}/.oh-my-zsh
     cd /home/${OWNER_USER}/.archbase/tools

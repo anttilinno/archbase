@@ -9,6 +9,7 @@ mkdir ${BASE_DIR}/.config
 
 ln -s ${BASE_DIR}/.archbase/config/i3 ${BASE_DIR}/.config/i3
 ln -s ${BASE_DIR}/.archbase/config/localbin ${BASE_DIR}/.local/bin
+ln -s ${BASE_DIR}/.archbase/config/terminator ${BASE_DIR}/.config/terminator
 ln -s ${BASE_DIR}/.archbase/config/xinitrc ${BASE_DIR}/.xinitrc
 ln -s ${BASE_DIR}/.archbase/config/zshrc ${BASE_DIR}/.zshrc
 ln -s ${BASE_DIR}/.archbase/config/zprofile ${BASE_DIR}/.zprofile
