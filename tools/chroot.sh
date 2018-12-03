@@ -19,7 +19,7 @@ main() {
     mkinitcpio -p linux
     echo "root:$ROOT_PASSWORD" | chpasswd
     pacman -Sy
-    pacman -S --noconfirm grub openssh sudo mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel gmrun diff-so-fancy noto-fonts
+    pacman -S --noconfirm grub openssh sudo mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel gmrun diff-so-fancy docker noto-fonts
 
     if [ "$VMTYPE" = "vmware" ]; then
         pacman -S --noconfirm open-vm-tools xf86-video-vmware xf86-input-vmmouse gtkmm3
@@ -40,7 +40,7 @@ main() {
 SuDoersTest
     # And change nopasswd after install
     echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
-    useradd -m -G wheel -s /usr/bin/zsh "$OWNER_USER"
+    useradd -m -G wheel,docker -s /usr/bin/zsh "$OWNER_USER"
     echo "$OWNER_USER:$OWNER_PASSWORD" | chpasswd
     cd /etc/pacman.d
     cp mirrorlist mirrorlist.backup
