@@ -49,7 +49,7 @@ ZSH_THEME="jreese"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-flow)
+plugins=(git docker docker-compose)
 
 # User configuration
 
@@ -87,31 +87,25 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR='nvim'
 
-#export PLENV_ROOT="/opt/perl5"
-export PATH="/opt/perl5/bin:${HOME}/.local/bin:$PATH"
-#eval "$(plenv init -)"
+export PATH="${HOME}/.local/bin:$PATH"
 export PAGER="/usr/bin/less"
 
-export pg_db='begin_monitor'
-export pg_connect="dbi:Pg:dbname=${pg_db:=begin_monitor}"
-export repo="Repo/Bundle"
-export port="2000"
-export server_path="$HOME/$repo/frontend/script/tc65_server.pl -rd -p $port -f"
-alias repo1="cd $HOME/Repo/Bundle"
-alias repo2="cd $HOME/Repo/Forms/API"
 alias tag="cd $HOME/$repo;ctags -f tags --recurse --totals --languages=Perl --langmap=Perl:+.t"
 alias ff="pg_dump -Fc -s -U postgres $pg_db | pg_restore -l | grep "
-
-set_db() { export pg_db="$1"; export pg_connect="dbi:Pg:dbname=$1" }
-bm() { psql -U postgres $pg_db }
-
-set_server() { export server_path="$HOME/$1/frontend/script/tc65_server.pl -rd -p $2 -f" }
-server() { eval $server_path }
-
-alias rst="pm2 restart all;perl ${HOME}/Repo/Bundle/frontend/tc65.fastcgi.initd restart"
 
 export NVM_DIR="/home/antti/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 alias ntapp='NYTPROF="start=no" perl -d:NYTProf frontend/script/tc65_server.pl -rd'
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+source ${HOME}/.local/bin/goto.sh
+alias resetdb='dropdb -U postgres begin_monitor;createdb -U postgres begin_monitor;'
+
+# HSTR configuration - add this to ~/.bashrc
+alias hh=hstr                    # hh to be alias for hstr
+export HISTFILE=~/.zsh_history  # ensure history file visibility
+export HSTR_CONFIG=hicolor        # get more colors
+bindkey -s "\C-r" "\eqhstr\n"     # bind hstr to Ctrl-r (for Vi mode check doc)
+
+alias donthurtme='sudo shutdown now'
