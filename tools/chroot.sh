@@ -22,7 +22,7 @@ main() {
     pacman -S --noconfirm grub openssh sudo mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel gmrun diff-so-fancy noto-fonts
 
     if [ "$VMTYPE" = "vmware" ]; then
-        pacman -S --noconfirm open-vm-tools xf86-video-vmware xf86-input-vmmouse
+        pacman -S --noconfirm open-vm-tools xf86-video-vmware xf86-input-vmmouse gtkmm3
     else
         pacman -S --noconfirm virtualbox-guest-utils virtualbox-guest-modules-arch
     fi

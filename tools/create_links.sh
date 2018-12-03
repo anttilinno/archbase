@@ -4,7 +4,7 @@ set -o nounset                              # Treat unset variables as an error
 
 BASE_DIR="$1"
 
-mkdir -p ${BASE_DIR}/.local/bin
+mkdir -p ${BASE_DIR}/.local
 mkdir ${BASE_DIR}/.config
 
 ln -s ${BASE_DIR}/.archbase/config/i3 ${BASE_DIR}/.config/i3
