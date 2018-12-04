@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/antti/.oh-my-zsh
+export ZSH=/home/antti/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -91,22 +91,21 @@ export DEFAULT_USER="antti"
 export PATH="${HOME}/.local/bin:$PATH"
 export PAGER="/usr/bin/less"
 
-alias tag="cd $HOME/$repo;ctags -f tags --recurse --totals --languages=Perl --langmap=Perl:+.t"
-alias ff="pg_dump -Fc -s -U postgres $pg_db | pg_restore -l | grep "
+alias tu="tomb use"
+alias resetdb='dropdb -U postgres begin_monitor;createdb -U postgres begin_monitor'
 
-export NVM_DIR="/home/antti/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-alias ntapp='NYTPROF="start=no" perl -d:NYTProf frontend/script/tc65_server.pl -rd'
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-source ${HOME}/.local/bin/goto.sh
-alias resetdb='dropdb -U postgres begin_monitor;createdb -U postgres begin_monitor;'
+source ~/.local/bin/goto.sh
 
 # HSTR configuration - add this to ~/.bashrc
 alias hh=hstr                    # hh to be alias for hstr
 export HISTFILE=~/.zsh_history  # ensure history file visibility
 export HSTR_CONFIG=hicolor        # get more colors
 bindkey -s "\C-r" "\eqhstr\n"     # bind hstr to Ctrl-r (for Vi mode check doc)
+
+DEFAULT_USER="antti"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 alias donthurtme='sudo shutdown now'

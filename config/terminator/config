@@ -26,7 +26,6 @@
     use_system_font = False
   [[solarized-dark]]
     background_color = "#002b36"
-    background_image = None
     cursor_color = "#eee8d5"
     font = Hack 14
     foreground_color = "#eee8d5"
@@ -35,7 +34,6 @@
     use_system_font = False
   [[solarized-light]]
     background_color = "#eee8d5"
-    background_image = None
     cursor_color = "#002b36"
     font = Hack 14
     foreground_color = "#002b36"
