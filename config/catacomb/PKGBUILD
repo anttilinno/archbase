@@ -1,0 +1,28 @@
+pkgname=('python-catacomb-git')
+_pkgname=catacomb
+pkgver=v0.5.1.r1.g9b71031
+pkgrel=1
+pkgdesc="A minimalistic CLI tool for storing shell commands."
+arch=('any')
+url='https://github.com/mitchjeitani/catacomb'
+license=('MIT')
+makedepends=('git' 'python-setuptools' 'python2-setuptools')
+options=()
+source=('git://github.com/mitchjeitani/catacomb.git')
+md5sums=('SKIP')
+
+pkgver() {
+  cd $_pkgname
+  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+build() {
+    cd $_pkgname
+    python setup.py build
+}
+
+package() {
+    depends=('python' 'python-click' 'python-terminaltables')
+    cd $_pkgname
+    python setup.py install --root="$pkgdir/" --optimize=1 --skip-build
+}
