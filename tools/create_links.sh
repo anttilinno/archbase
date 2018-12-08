@@ -13,6 +13,8 @@ ln -s ${BASE_DIR}/.archbase/config/terminator ${BASE_DIR}/.config/terminator
 ln -s ${BASE_DIR}/.archbase/config/xinitrc ${BASE_DIR}/.xinitrc
 ln -s ${BASE_DIR}/.archbase/config/zshrc ${BASE_DIR}/.zshrc
 ln -s ${BASE_DIR}/.archbase/config/zprofile ${BASE_DIR}/.zprofile
+ln -s ${BASE_DIR}/.archbase/config/gotorc ${BASE_DIR}/.goto
+ln -s ${BASE_DIR}/.archbase/config/gitconfig ${BASE_DIR}/.gitconfig
 
 git clone https://github.com/anttilinno/dotvim ${BASE_DIR}/.config/nvim
 git clone https://github.com/VundleVim/Vundle.vim.git ${BASE_DIR}/.config/nvim/bundle/Vundle.vim

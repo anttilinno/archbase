@@ -1,0 +1,5 @@
+[user]
+	email = antti@begin.ee
+	name = Antti Linno
+[init]
+	templatedir = ~/.archbase/config/git
