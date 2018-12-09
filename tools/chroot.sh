@@ -19,7 +19,7 @@ main() {
     mkinitcpio -p linux
     echo "root:$ROOT_PASSWORD" | chpasswd
     pacman -Sy
-    pacman -S --noconfirm grub openssh sudo mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel gmrun diff-so-fancy docker noto-fonts
+    pacman -S --noconfirm grub openssh sudo mesa gtkmm zsh xorg-xinit terminator i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher python2-neovim xsel gmrun diff-so-fancy docker noto-fonts docker-compose
 
     if [ "$VMTYPE" = "vmware" ]; then
         pacman -S --noconfirm open-vm-tools xf86-video-vmware xf86-input-vmmouse gtkmm3
@@ -60,18 +60,16 @@ ExecStart=
 ExecStart=-/usr/bin/agetty --autologin ${OWNER_USER} --noclear %I \$TERM
 EOT
 
-    cat <<'EOT' >> /etc/pacman.conf
-
-[archlinuxfr]
-SigLevel = Never
-Server = http://repo.archlinux.fr/$arch
-EOT
-    pacman -Sy
-    pacman -S --noconfirm yaourt
     git clone https://github.com/anttilinno/archbase /home/${OWNER_USER}/.archbase
     git clone git://github.com/robbyrussell/oh-my-zsh.git /home/${OWNER_USER}/.oh-my-zsh
     cd /home/${OWNER_USER}/.archbase/tools
     ./create_links.sh "/home/${OWNER_USER}"
+    # Create Repo directory
+    mkdir /home/${OWNER_USER}/Repo
+    mkdir /home/${OWNER_USER}/.ssh
+    chmod 0700 /home/${OWNER_USER}/.ssh
+    touch /home/${OWNER_USER}/.ssh/id_rsa
+    chmod 0600 /home/${OWNER_USER}/.ssh/id_rsa
     chown -R ${OWNER_USER}:${OWNER_USER} /home/${OWNER_USER}
 
     if [ "$VMTYPE" = "vmware" ]; then
@@ -79,6 +77,7 @@ EOT
     else
         sed -i '2s/^#//' /home/${OWNER_USER}/.xinitrc
     fi
+
 
     exit
 }
