@@ -70,14 +70,19 @@ EOT
     chmod 0700 /home/${OWNER_USER}/.ssh
     touch /home/${OWNER_USER}/.ssh/id_rsa
     chmod 0600 /home/${OWNER_USER}/.ssh/id_rsa
-    chown -R ${OWNER_USER}:${OWNER_USER} /home/${OWNER_USER}
 
     if [ "$VMTYPE" = "vmware" ]; then
         sed -i '1s/^#//' /home/${OWNER_USER}/.xinitrc
+        cat <<vmwareFix >> /home/${OWNER_USER}/.ssh/config
+Host *
+    IPQoS=throughput
+vmwareFix
+
     else
         sed -i '2s/^#//' /home/${OWNER_USER}/.xinitrc
     fi
 
+    chown -R ${OWNER_USER}:${OWNER_USER} /home/${OWNER_USER}
 
     exit
 }
