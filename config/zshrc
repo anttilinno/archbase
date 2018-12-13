@@ -109,3 +109,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 alias donthurtme='sudo shutdown now'
+alias runtags='ctags -f tags --recurse --totals --languages=Perl --langmap=Perl:+.t'
