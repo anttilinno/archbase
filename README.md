@@ -13,7 +13,9 @@ First steps:
 ## First login
 
  - `cd Repo/Begin && git clone git@bitbucket.org:begin/begin_docker.git docker`
+ - `unset NVM_DIR`
  - `cd && curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash`
+ - `source .zshrc`
  - `nvm install 8.14.0 && npm install yarn -g`
 
 ## Docker bug with 4.19 kernels
