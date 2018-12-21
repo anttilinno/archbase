@@ -16,6 +16,7 @@ ln -s ${BASE_DIR}/.archbase/config/zprofile ${BASE_DIR}/.zprofile
 ln -s ${BASE_DIR}/.archbase/config/gotorc ${BASE_DIR}/.goto
 ln -s ${BASE_DIR}/.archbase/config/gitconfig ${BASE_DIR}/.gitconfig
 ln -s ${BASE_DIR}/.archbase/config/pgpass ${BASE_DIR}/.pgpass
+ln -s ${BASE_DIR}/.archbase/config/catacomb ${BASE_DIR}/.catacomb
 
 git clone https://github.com/anttilinno/dotvim ${BASE_DIR}/.config/nvim
 git clone https://github.com/VundleVim/Vundle.vim.git ${BASE_DIR}/.config/nvim/bundle/Vundle.vim
