@@ -12,7 +12,7 @@ First steps:
 
 ## First login
 
- - `cd Repo && git clone git@bitbucket.org:begin/begin_docker.git docker`
+ - `cd Repo/Begin && git clone git@bitbucket.org:begin/begin_docker.git docker`
  - `cd && curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash`
  - `nvm install 8.14.0 && npm install yarn -g`
 

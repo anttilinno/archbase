@@ -52,6 +52,7 @@ SuDoersTest
     else
         systemctl enable dhcpcd@enp0s3.service
     fi
+    systemctl enable docker
 
     mkdir -p /etc/systemd/system/getty@tty1.service.d
     cat <<EOT >> /etc/systemd/system/getty@tty1.service.d/override.conf
@@ -65,7 +66,7 @@ EOT
     cd /home/${OWNER_USER}/.archbase/tools
     ./create_links.sh "/home/${OWNER_USER}"
     # Create Repo directory
-    mkdir /home/${OWNER_USER}/Repo
+    mkdir -p /home/${OWNER_USER}/Repo/Begin
     mkdir /home/${OWNER_USER}/.ssh
     chmod 0700 /home/${OWNER_USER}/.ssh
     touch /home/${OWNER_USER}/.ssh/id_rsa
