@@ -32,3 +32,9 @@ In case it needs to be recreated:
  - `git config --global init.templatedir '~/.git-templates'`
  - Re-initialize git in each existing repo you'd like to use this in: `git init`. **NOTE** if you already have a hook defined in your local git repo, this will not overwrite it.
 
+### VMWare bonus
+
+`Edit>Preferences>Shared VMs>Change Settings>Disable Sharing`
+This will free up 443 port or one can change the port to something else
+`Edit>Virtual Network Editor>Change Settings>NAT>NAT Settings`
+Add port forward for 80 and 443 from guest to host.
