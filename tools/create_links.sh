@@ -23,3 +23,5 @@ git clone https://github.com/VundleVim/Vundle.vim.git ${BASE_DIR}/.config/nvim/b
 
 ln -s /usr/bin/nvim /usr/local/bin/vim
 
+cp ${BASE_DIR}/.archbase/config/config.data ${BASE_DIR}/.ssh/
+chown -R antti:antti ${BASE_DIR}/.ssh
