@@ -110,3 +110,6 @@ export NVM_DIR="$HOME/.nvm"
 
 alias donthurtme='sudo shutdown now'
 alias runtags='ctags -f tags --recurse --totals --languages=Perl --langmap=Perl:+.t'
+
+POWERLEVEL9K_MODE='awesome-fontconfig'
+source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme

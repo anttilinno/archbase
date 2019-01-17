@@ -5,7 +5,7 @@ use warnings;
 use utf8;
 use v5.10;
 
-use Data::Dumper::Concise;
+use Data::Dumper;
 
 undef $/;
 open my $fh, '<:utf8', $ARGV[0];
