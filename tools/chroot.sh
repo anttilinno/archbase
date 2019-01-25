@@ -20,7 +20,7 @@ main() {
     echo "root:$ROOT_PASSWORD" | chpasswd
     pacman -Sy
     pacman -S --noconfirm grub openssh sudo mesa gtkmm zsh xorg-xinit terminator \
-        i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher \ 
+        i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher \
         python2-neovim xsel gmrun diff-so-fancy docker noto-fonts docker-compose \
         pacman-contrib zsh-theme-powerlevel9k
 
