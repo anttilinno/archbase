@@ -36,3 +36,9 @@ In case it needs to be recreated:
 This will free up 443 port or one can change the port to something else
 `Edit>Virtual Network Editor>Change Settings>NAT>NAT Settings`
 Add port forward for 80 and 443 from guest to host.
+
+### Other steps to do
+
+  - Install yay
+  - Install nerd fonts https://github.com/ryanoasis/nerd-fonts#font-installation
+  - Install catacomb
