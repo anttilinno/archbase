@@ -71,7 +71,7 @@ EOT
     # Create Repo directory
     mkdir -p /home/${OWNER_USER}/Repo/Begin
     mkdir /home/${OWNER_USER}/.ssh
-    cp ${BASE_DIR}/.archbase/config/config.data ${BASE_DIR}/.ssh/
+    cp ${OWNER_USER}/.archbase/config/config.data ${OWNER_USER}/.ssh/
     chmod 0700 /home/${OWNER_USER}/.ssh
     touch /home/${OWNER_USER}/.ssh/id_rsa
     chmod 0600 /home/${OWNER_USER}/.ssh/id_rsa
