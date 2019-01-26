@@ -20,7 +20,7 @@ main() {
     echo "root:$ROOT_PASSWORD" | chpasswd
     pacman -Sy
     pacman -S --noconfirm grub openssh sudo mesa gtkmm zsh xorg-xinit terminator \
-        i3 xorg-server ttf-hack git neovim ctags perl-tidy the_silver_searcher \
+        i3 xorg-server git neovim ctags perl-tidy the_silver_searcher \
         python2-neovim xsel gmrun diff-so-fancy docker noto-fonts docker-compose \
         pacman-contrib zsh-theme-powerlevel9k
 
@@ -71,6 +71,7 @@ EOT
     # Create Repo directory
     mkdir -p /home/${OWNER_USER}/Repo/Begin
     mkdir /home/${OWNER_USER}/.ssh
+    cp ${BASE_DIR}/.archbase/config/config.data ${BASE_DIR}/.ssh/
     chmod 0700 /home/${OWNER_USER}/.ssh
     touch /home/${OWNER_USER}/.ssh/id_rsa
     chmod 0600 /home/${OWNER_USER}/.ssh/id_rsa

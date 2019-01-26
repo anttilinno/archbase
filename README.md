@@ -41,4 +41,8 @@ Add port forward for 80 and 443 from guest to host.
 
   - Install yay
   - Install nerd fonts https://github.com/ryanoasis/nerd-fonts#font-installation
+    with `yay -S nerd-fonts-complete`
   - Install catacomb
+
+### Crypt files with gpg
+  - `gpg --output doc.gpg --symmetric doc`
