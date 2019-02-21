@@ -3,6 +3,10 @@
     "newc": {
       "command": "curl -k -X POST -H \"Content-Type: application/json\" https://localhost/api/v2/signup -d '{\"name\":\"TS\",\"email\":\"ts@example.com\",\"password\":\"sample\", \"sector\":\"58\", \"company\":\"Lame\", \"name\":\"Game\", \"phone\":\"123\"}'",
       "description": "Add new client in minimal database"
+    },
+    "pg": {
+      "command": "psql -U postgres -h localhost -p 6432 begin_monitor",
+      "description": "Local postgres in docker"
     }
   },
   "description": "-"
