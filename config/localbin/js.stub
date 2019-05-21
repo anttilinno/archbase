@@ -1,0 +1,14 @@
+
+exports.up = async function(knex, Promise) {
+    const sql = `
+<<UP>>
+    `;
+    return await knex.raw(sql);
+};
+
+exports.down = async function(knex, Promise) {
+    const sql = `
+<<DOWN>>
+    `;
+    return await knex.raw(sql);
+};

@@ -6,3 +6,4 @@ auth /home/antti/Repo/Begin/docker/repos/auth-ui
 repo_root /home/antti/Repo/Begin/docker/repos
 socketio /home/antti/Repo/Begin/docker/repos/socketio
 reports /home/antti/Repo/Begin/docker/repos/reports-ui
+subs /home/antti/Repo/Begin/docker/repos/subscriptions
