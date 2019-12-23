@@ -9,11 +9,11 @@ main() {
     # Set machine name
     echo "$GUEST_HOSTNAME" > /etc/hostname
     # Time zone
-    rm /etc/localtime
+    rm  -f /etc/localtime
     ln -s /usr/share/zoneinfo/Europe/Tallinn /etc/localtime
     # Add locale
-    sed -i -e 's/# *en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
-    sed -i -e 's/# *et_EE.UTF-8 UTF-8/et_EE.UTF-8 UTF-8/' /etc/locale.gen
+    sed -i -e 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+    sed -i -e 's/#et_EE.UTF-8 UTF-8/et_EE.UTF-8 UTF-8/' /etc/locale.gen
     echo LANG=en_US.UTF-8 > /etc/locale.conf
     locale-gen
     mkinitcpio -p linux
@@ -22,7 +22,7 @@ main() {
     pacman -S --noconfirm grub openssh sudo mesa gtkmm zsh xorg-xinit terminator \
         i3 xorg-server git neovim ctags perl-tidy the_silver_searcher \
         python-neovim xsel gmrun diff-so-fancy docker noto-fonts docker-compose \
-        pacman-contrib zsh-theme-powerlevel9k
+        pacman-contrib zsh-theme-powerlevel9k dhcpcd
 
     if [ "$VMTYPE" = "vmware" ]; then
         pacman -S --noconfirm open-vm-tools xf86-video-vmware xf86-input-vmmouse gtkmm3
@@ -38,17 +38,11 @@ main() {
     else
         systemctl enable vboxservice.service
     fi
-    visudo -c -q -f - <<SuDoersTest
-%wheel ALL=(ALL) NOPASSWD: ALL
-SuDoersTest
     # And change nopasswd after install
     echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
     useradd -m -G wheel,docker -s /usr/bin/zsh "$OWNER_USER"
     echo "$OWNER_USER:$OWNER_PASSWORD" | chpasswd
     cd /etc/pacman.d
-    cp mirrorlist mirrorlist.backup
-    sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
-    rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 
     if [ "$VMTYPE" = "vmware" ]; then
         systemctl enable dhcpcd@ens33.service

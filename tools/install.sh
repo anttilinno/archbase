@@ -14,7 +14,7 @@ main() {
     # Mount to default location
     mount /dev/sda1 /mnt
     # Install also development packages
-    pacstrap /mnt base base-devel
+    pacstrap /mnt base base-devel e2fsprogs linux linux-firmware neovim
     genfstab -p /mnt >> /mnt/etc/fstab
     cp chroot.config /mnt
     arch-chroot /mnt /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/anttilinno/archbase/master/tools/chroot.sh)"

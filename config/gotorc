@@ -7,3 +7,4 @@ repo_root /home/antti/Repo/Begin/docker/repos
 socketio /home/antti/Repo/Begin/docker/repos/socketio
 reports /home/antti/Repo/Begin/docker/repos/reports-ui
 subs /home/antti/Repo/Begin/docker/repos/subscriptions
+new /home/antti/Repo/Begin/begin-1.0
