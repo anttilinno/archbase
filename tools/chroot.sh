@@ -27,7 +27,7 @@ main() {
     if [ "$VMTYPE" = "vmware" ]; then
         pacman -S --noconfirm open-vm-tools xf86-video-vmware xf86-input-vmmouse gtkmm3
     else
-        pacman -S --noconfirm virtualbox-guest-utils virtualbox-guest-modules-arch
+        pacman -S --noconfirm virtualbox-guest-utils virtualbox-guest-modules-arch xf86-video-vmware
     fi
 
     grub-install --target=i386-pc /dev/sda
